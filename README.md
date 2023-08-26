@@ -1,4 +1,4 @@
-# Django Restframework File Response
+# Django Restframework Prioritizing celery task
 
 ---
 

@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '=vuc*+8283ry8z*n-@vz@$4jrchg4(du11ld*3op@-#+u3)*@1'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -137,7 +138,7 @@ SPECTACULAR_SETTINGS = {
 }
 
 
-CELERY_BROKER_URL = 'amqp://localhost:5672'
+CELERY_BROKER_URL = config('CELERY_BROKER_URL', cast=str)
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_TASK_TRACK_STARTED = True
 CELERY_TASK_DEFAULT_QUEUE = 'celery.importexport.default'
